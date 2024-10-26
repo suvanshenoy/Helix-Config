@@ -1,0 +1,43 @@
+[language-server.python-lsp]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[[language]]
+name = "python"
+roots = ["pyproject.toml","poetry.lock"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+formatter = {command = "bash", args = ["-c","black --quiet - | isort -"]}
+language-servers = [{name="python-lsp",except-features = ["diagnostics"],only-features=["format","goto-definition","code-action"]}]
+
+[language-server.c-cpp-lsp]
+command = "clangd"
+args = ["--background-index"]
+
+[[language]]
+name = "c"
+file-types = ["h","c"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = [{name="c-cpp-lsp",except-features=["diagnostics"],only-features=["format","goto-definition","goto-declaration","goto-type-definition","goto-implementation","goto-reference","code-action"]}]
+
+[[language]]
+name = "cpp"
+file-types = ["hpp","cpp","cc","hh"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+language-servers = [{name="c-cpp-lsp",except-features=["diagnostics"],only-features=["format","goto-definition","goto-declaration","goto-type-definition","goto-implementation","goto-reference","code-action"]}]
+
+
+[language-server.bash-lsp]
+command = "bash-language-server"
+args = ["start"]
+
+[[language]]
+name = "bash"
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = ["bash-lsp"]
+
+
+
